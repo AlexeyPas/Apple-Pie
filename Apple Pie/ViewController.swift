@@ -106,31 +106,75 @@ class ViewController: UIViewController {
                     
     ]
     
-    var totalWins = 0
-    var totalLosses = 0
+    var totalWins = 0{
+        didSet{
+            newRound()
+        }
+    }
+    var totalLosses = 0{
+        didSet{
+            newRound()
+        }
+    }
     
     //MARK: - metods
+    func enableButtons(_ enable: Bool = true){
+        for button in letterButton{
+            button.isEnabled = enable
+        }
+    }
     
     func newRound()  {
+        guard !listOfWords.isEmpty else {
+            enableButtons(false)
+            updateUI()
+            return
+        }
         let newWord = listOfWords.removeFirst()
         currentGame = Game(word: newWord, incorrectMovesRamaining: incorrectMovesAllowed)
-    }
+        updateUI()
+        enableButtons()
+     }
     override func viewDidLoad() {
         super.viewDidLoad()
         newRound()
         updateUI()
     }
     
+    func updateCorrectWordLabel()  {
+        var displayWord = [String]()
+        for letter in currentGame.guessedWord{
+            displayWord.append(String(letter))
+        }
+        correctWordLabel.text = displayWord.joined(separator: " ")
+    }
+    
+    func updateState(){
+        if currentGame.incorrectMovesRamaining < 1 {
+            totalLosses += 1
+        }else if currentGame.guessedWord == currentGame.word{
+            totalWins += 1
+        }else{
+            updateUI()
+        }
+    }
+    
     func updateUI()  {
         let movesRamaining = currentGame.incorrectMovesRamaining
-        let image = "Tree\(movesRamaining < 8 ? movesRamaining : 7)"
+        let numberInage = (movesRamaining + 64) % 8
+        let image = "Tree\(numberInage)"
         treeImageView.image = UIImage(named: image)
+        updateCorrectWordLabel()
         scoreLabel.text = "Побед: \(totalWins), Проигрышей: \(totalLosses)"
+        
     }
     //MARL: -IB Actions
 
     @IBAction func letterButtonPressed(_ sender: UIButton) {
         sender.isEnabled = false
+        let letter = sender.title(for: .normal)!
+        currentGame.playerGuessed(letter: Character(letter))
+        updateState()
     }
     
 }
