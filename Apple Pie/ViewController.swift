@@ -8,21 +8,23 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-// MARK: -IB Outlets
+    
+    // MARK: -IB Outlets
     
     @IBOutlet weak var treeImageView: UIImageView!
     @IBOutlet var letterButton: [UIButton]!
     @IBOutlet weak var correctWordLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var countryButton: UIButton!
+    @IBOutlet weak var cityButton: UIButton!
+    
     
     //MARK: - Properties
     var currentGame: Game!
     let incorrectMovesAllowed = 7
     
-    var listOfWords = [
+    var listOfWords1 = [
         "Токио",
-        "Япония",
         "Дели",
         "Шанхай",
         "Сан-Паулу",
@@ -103,7 +105,122 @@ class ViewController: UIViewController {
         "Александрия",
         "Цзинань",
         "Гвадалахара",
-                    
+        
+    ]
+    
+    var listOfWords2 = [
+        "Россия",
+        "Канада",
+        "США",
+        "Китай",
+        "Бразилия",
+        "Австралия",
+        "Индия",
+        "Аргентина",
+        "Казахстан",
+        "Судан",
+        "Алжир",
+        "Конго ",
+        "Мексика",
+        "Саудовская Аравия",
+        "Индонезия",
+        "Ливия",
+        "Иран",
+        "Монголия",
+        "Перу",
+        "Чад",
+        "Нигер",
+        "Ангола",
+        "Мали",
+        "ЮАР  ",
+        "Колумбия",
+        "Эфиопия",
+        "Боливия",
+        "Мавритания",
+        "Египет",
+        "Танзания",
+        "Нигерия",
+        "Венесуэла",
+        "Намибия",
+        "Пакистан",
+        "Мозамбик",
+        "Турция",
+        "Чили  ",
+        "Замбия",
+        "Мьянма",
+        "Афганистан",
+        "Сомали",
+        "Центрально-Африканская Республика",
+        "Украина",
+        "Ботсвана",
+        "Мадагаскар",
+        "Кения",
+        "Франция",
+        "Йемен",
+        "Таиланд",
+        "Испания",
+        "Туркменистан",
+        "Камерун",
+        "Папуа-Новая Гвинея",
+        "Швеция",
+        "Узбекистан",
+        "Марокко",
+        "Ирак",
+        "Парагвай",
+        "Зимбабве",
+        "Япония",
+        "Германия",
+        "Конго ",
+        "Финляндия",
+        "Малайзия",
+        "Вьетнам",
+        "Норвегия",
+        "Берег Слоновой Кости  ",
+        "Польша",
+        "Италия",
+        "Филиппины",
+        "Эквадор",
+        "Буркина-Фасо",
+        "Новая Зеландия",
+        "Габон",
+        "Гвинея",
+        "Великобритания",
+        "Гана",
+        "Румыния",
+        "Лаос",
+        "Уганда",
+        "Гайана",
+        "Оман",
+        "Беларусь",
+        "Киргизия",
+        "Сенегал",
+        "Сирия",
+        "Камбоджа",
+        "Уругвай",
+        "Тунис",
+        "Суринам",
+        "Бангладеш",
+        "Таджикистан",
+        "Непал",
+        "Греция",
+        "Никарагуа",
+        "Эритрея",
+        "Северная Корея ",
+        "Малави",
+        "Бенин",
+        "Гондурас",
+        "Либерия",
+        "Болгария ",
+        "Куба",
+        "Гватемала",
+        "Исландия",
+        "Черногория",
+        "Южная Корея ",
+        "Венгрия",
+        "Португалия",
+        "Иордания",
+        "Азербайджан",
+        "Австрия",
     ]
     
     var totalWins = 0{
@@ -117,6 +234,9 @@ class ViewController: UIViewController {
         }
     }
     
+    var listOfVariant:[String] = []
+    
+    
     //MARK: - metods
     func enableButtons(_ enable: Bool = true){
         for button in letterButton{
@@ -125,20 +245,24 @@ class ViewController: UIViewController {
     }
     
     func newRound()  {
-        guard !listOfWords.isEmpty else {
+        
+        guard !listOfVariant.isEmpty else {
             enableButtons(false)
             updateUI()
             return
         }
-        let newWord = listOfWords.removeFirst()
+        
+        let newWord = listOfVariant.removeFirst()
         currentGame = Game(word: newWord, incorrectMovesRamaining: incorrectMovesAllowed)
         updateUI()
         enableButtons()
-     }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        newRound()
-        updateUI()
+        enableButtons(false)
+//        newRound()
+//        updateUI()
     }
     
     func updateCorrectWordLabel()  {
@@ -160,6 +284,7 @@ class ViewController: UIViewController {
     }
     
     func updateUI()  {
+        
         let movesRamaining = currentGame.incorrectMovesRamaining
         let numberInage = (movesRamaining + 64) % 8
         let image = "Tree\(numberInage)"
@@ -169,7 +294,7 @@ class ViewController: UIViewController {
         
     }
     //MARL: -IB Actions
-
+    
     @IBAction func letterButtonPressed(_ sender: UIButton) {
         sender.isEnabled = false
         let letter = sender.title(for: .normal)!
@@ -177,5 +302,19 @@ class ViewController: UIViewController {
         updateState()
     }
     
+    @IBAction func cityButton(_ sender: UIButton) {
+        if sender.isEnabled {
+            listOfVariant = listOfWords1
+            newRound()
+            updateUI()
+        }
+    }
+    @IBAction func countyButton(_ sender: UIButton) {
+        if sender.isEnabled{
+            listOfVariant = listOfWords2
+            newRound()
+            updateUI()
+        }
+    }
 }
 
