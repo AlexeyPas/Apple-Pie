@@ -13,6 +13,10 @@
 		5559523D254B2EF70046B26F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5559523B254B2EF70046B26F /* Main.storyboard */; };
 		5559523F254B2EFB0046B26F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5559523E254B2EFB0046B26F /* Assets.xcassets */; };
 		55595242254B2EFB0046B26F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55595240254B2EFB0046B26F /* LaunchScreen.storyboard */; };
+		5566B23B255155A600B095D5 /* Screenshot 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5566B237255155A600B095D5 /* Screenshot 1.png */; };
+		5566B23C255155A600B095D5 /* Screenshot 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5566B238255155A600B095D5 /* Screenshot 2.png */; };
+		5566B23D255155A600B095D5 /* Screenshot 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 5566B239255155A600B095D5 /* Screenshot 4.png */; };
+		5566B23E255155A600B095D5 /* Screenshot 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5566B23A255155A600B095D5 /* Screenshot 3.png */; };
 		55F658E9254EF6CF00077C3F /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F658E8254EF6CE00077C3F /* Game.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +29,10 @@
 		5559523E254B2EFB0046B26F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		55595241254B2EFB0046B26F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		55595243254B2EFB0046B26F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5566B237255155A600B095D5 /* Screenshot 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screenshot 1.png"; sourceTree = "<group>"; };
+		5566B238255155A600B095D5 /* Screenshot 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screenshot 2.png"; sourceTree = "<group>"; };
+		5566B239255155A600B095D5 /* Screenshot 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screenshot 4.png"; sourceTree = "<group>"; };
+		5566B23A255155A600B095D5 /* Screenshot 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screenshot 3.png"; sourceTree = "<group>"; };
 		55F658E8254EF6CE00077C3F /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,6 +66,7 @@
 		55595234254B2EF70046B26F /* Apple Pie */ = {
 			isa = PBXGroup;
 			children = (
+				5566B2362551559500B095D5 /* Screenshots */,
 				55595235254B2EF70046B26F /* AppDelegate.swift */,
 				55595237254B2EF70046B26F /* SceneDelegate.swift */,
 				55595239254B2EF70046B26F /* ViewController.swift */,
@@ -68,6 +77,17 @@
 				55F658E8254EF6CE00077C3F /* Game.swift */,
 			);
 			path = "Apple Pie";
+			sourceTree = "<group>";
+		};
+		5566B2362551559500B095D5 /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				5566B237255155A600B095D5 /* Screenshot 1.png */,
+				5566B238255155A600B095D5 /* Screenshot 2.png */,
+				5566B23A255155A600B095D5 /* Screenshot 3.png */,
+				5566B239255155A600B095D5 /* Screenshot 4.png */,
+			);
+			path = Screenshots;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -129,7 +149,11 @@
 			files = (
 				55595242254B2EFB0046B26F /* LaunchScreen.storyboard in Resources */,
 				5559523F254B2EFB0046B26F /* Assets.xcassets in Resources */,
+				5566B23E255155A600B095D5 /* Screenshot 3.png in Resources */,
+				5566B23B255155A600B095D5 /* Screenshot 1.png in Resources */,
+				5566B23C255155A600B095D5 /* Screenshot 2.png in Resources */,
 				5559523D254B2EF70046B26F /* Main.storyboard in Resources */,
+				5566B23D255155A600B095D5 /* Screenshot 4.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

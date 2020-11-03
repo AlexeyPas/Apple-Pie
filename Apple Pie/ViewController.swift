@@ -221,7 +221,7 @@ class ViewController: UIViewController {
         "Иордания",
         "Азербайджан",
         "Австрия",
-    ]
+    ].shuffled()
     
     var totalWins = 0{
         didSet{
