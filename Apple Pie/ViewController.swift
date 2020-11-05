@@ -10,20 +10,16 @@ import UIKit
 class ViewController: UIViewController {
     
     // MARK: -IB Outlets
-    
     @IBOutlet weak var treeImageView: UIImageView!
     @IBOutlet var letterButton: [UIButton]!
     @IBOutlet weak var correctWordLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
-    @IBOutlet weak var countryButton: UIButton!
-    @IBOutlet weak var cityButton: UIButton!
     
     
     //MARK: - Properties
     var currentGame: Game!
     let incorrectMovesAllowed = 7
-    
-    var listOfWords1 = [
+    var listOfCity = [
         "Токио",
         "Дели",
         "Шанхай",
@@ -108,7 +104,7 @@ class ViewController: UIViewController {
         
     ]
     
-    var listOfWords2 = [
+    var listOfCountry = [
         "Россия",
         "Канада",
         "США",
@@ -223,76 +219,71 @@ class ViewController: UIViewController {
         "Австрия",
     ].shuffled()
     
-    var totalWins = 0{
-        didSet{
+    var totalWins = 0 {
+        didSet {
             newRound()
         }
     }
-    var totalLosses = 0{
-        didSet{
+    var totalLosses = 0 {
+        didSet {
             newRound()
         }
     }
+    var listOfVariant: [String] = []
     
-    var listOfVariant:[String] = []
-    
-    
-    //MARK: - metods
-    func enableButtons(_ enable: Bool = true){
-        for button in letterButton{
+    //MARK: - Methods
+    func enableButtons(_ enable: Bool = true) {
+        for button in letterButton {
             button.isEnabled = enable
         }
     }
     
-    func newRound()  {
-        
+    func newRound() {
         guard !listOfVariant.isEmpty else {
             enableButtons(false)
             updateUI()
             return
         }
-        
         let newWord = listOfVariant.removeFirst()
         currentGame = Game(word: newWord, incorrectMovesRamaining: incorrectMovesAllowed)
         updateUI()
         enableButtons()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        enableButtons(false)
-//        newRound()
-//        updateUI()
-    }
-    
-    func updateCorrectWordLabel()  {
+    func updateCorrectWordLabel() {
         var displayWord = [String]()
-        for letter in currentGame.guessedWord{
+        for letter in currentGame.guessedWord {
             displayWord.append(String(letter))
         }
         correctWordLabel.text = displayWord.joined(separator: " ")
     }
     
-    func updateState(){
+    func updateState() {
         if currentGame.incorrectMovesRamaining < 1 {
             totalLosses += 1
-        }else if currentGame.guessedWord == currentGame.word{
+        } else if currentGame.guessedWord == currentGame.word {
             totalWins += 1
-        }else{
+        } else {
             updateUI()
         }
     }
     
-    func updateUI()  {
-        
+    func updateUI() {
         let movesRamaining = currentGame.incorrectMovesRamaining
         let numberInage = (movesRamaining + 64) % 8
         let image = "Tree\(numberInage)"
         treeImageView.image = UIImage(named: image)
         updateCorrectWordLabel()
         scoreLabel.text = "Побед: \(totalWins), Проигрышей: \(totalLosses)"
-        
     }
+    
+    override func viewDidLoad() {
+        scoreLabel.text = ""
+        correctWordLabel.text = ""
+        super.viewDidLoad()
+        enableButtons(false)
+    }
+    
     //MARL: -IB Actions
     
     @IBAction func letterButtonPressed(_ sender: UIButton) {
@@ -301,17 +292,16 @@ class ViewController: UIViewController {
         currentGame.playerGuessed(letter: Character(letter))
         updateState()
     }
-    
-    @IBAction func cityButton(_ sender: UIButton) {
+    @IBAction func cityButtonPressed (_ sender: UIButton) {
         if sender.isEnabled {
-            listOfVariant = listOfWords1
+            listOfVariant = listOfCity
             newRound()
             updateUI()
         }
     }
-    @IBAction func countyButton(_ sender: UIButton) {
-        if sender.isEnabled{
-            listOfVariant = listOfWords2
+    @IBAction func countyButtonPressed (_ sender: UIButton) {
+        if sender.isEnabled {
+            listOfVariant = listOfCountry
             newRound()
             updateUI()
         }

@@ -30,7 +30,7 @@ struct Game {
     mutating func playerGuessed(letter: Character) {
         let lowercaseLetter = Character(letter.lowercased())
         guessedLettered.append(Character(letter.lowercased()))
-        if !word.lowercased().contains(lowercaseLetter){
+        if !word.lowercased().contains(lowercaseLetter) {
             incorrectMovesRamaining -= 1
         }
     }
